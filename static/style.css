@@ -1,0 +1,135 @@
+
+body {
+    background: linear-gradient(to bottom, #68CEA2 0%, #4BC691 24%, #109F61 80%);
+    height: 100vh;
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+
+/* Barre de navigation */
+.nav {
+    display: flex;
+    justify-content: center; /* Centre les éléments */
+    align-items: center;
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 180px;
+}
+
+/* Liens de navigation centrés avec 80px d'espacement */
+.nav nav {
+    display: flex;
+    gap: 80px; /* Espacement des liens */
+    align-items: center;
+}
+
+.nav a {
+    color: white;
+    text-decoration: none;
+    font-size: 1rem;
+    font-weight: bold;
+    transition: color 0.3s;
+}
+
+.nav a:hover {
+    color: #FFD700; /* Effet doré au survol */
+    text-decoration: underline;
+}
+
+/* Bouton "Contact" */
+.contact-btn {
+    background: #b0d444; /* Couleur dorée pour contraster avec le vert */
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: bold;
+    transition: background 0.3s, transform 0.2s;
+}
+
+.contact-btn:hover {
+    background: #FFC107; /* Légèrement plus foncé au survol */
+    transform: scale(1.05); /* Effet zoom */
+}
+
+/* Contenu principal */
+.container {
+    margin-top: 80px;
+    text-align: center;
+}
+
+h1 {
+    font-size: 3rem;
+    font-weight: bold;
+    color: white;
+    margin-bottom: 30px;
+    transition: transform 0.3s ease-in-out, font-size 0.3s ease-in-out;
+    margin-bottom: 20px
+}
+
+h1:hover{
+    transform: scale(1.8);
+}
+
+.subtitle {
+    font-size: 1.2rem;
+    color: #ddd;
+    margin-bottom: 200px
+}
+
+/* Tags sous le titre */
+.tags {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.tags span {
+    background: #FFD700;
+    padding: 10px 15px;
+    border-radius: 5px;
+    font-size: 0.9rem;
+    font-weight: bold;
+    color: black;
+}
+
+/* Réseaux sociaux */
+.socials {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+.socials a {
+    color: white;
+    text-decoration: none;
+    font-size: 1.2rem;
+    transition: color 0.3s;
+}
+
+.socials a:hover {
+    color: #FFD700;
+}
+
+/* Bouton "Rejoindre la goinfrance" */
+
+.join {
+    background: #b0d444; /* Couleur dorée pour contraster avec le vert */
+    color: white;
+    border: none;
+    padding: 14px 26px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 2rem;
+    font-weight: bold;
+    transition: background 0.3s, transform 0.2s;
+}
+
+.join:hover {
+    background-color: #FFC107;
+    transform: scale(1.01);
+}
