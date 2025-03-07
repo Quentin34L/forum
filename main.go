@@ -79,3 +79,5 @@ func createTables() {
 		log.Fatal("Erreur de la création de la tables posts", err)
 	}
 }
+
+// TEST
