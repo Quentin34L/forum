@@ -48,7 +48,6 @@ func InitDB() {
 	createTables()
 }
 
-// createTables crée les tables SQLite nécessaires
 func createTables() {
 	query := `
 	CREATE TABLE IF NOT EXISTS users (
@@ -58,8 +57,25 @@ func createTables() {
 		password TEXT NOT NULL
 	);
 	`
+
+	postsTable := `
+	CREATE TABLE IF NOT EXISTS posts (
+		id INTEGER PRIMARY KEY AUTOINCREMENT,
+		user_id INTEGER NOT NULL,
+		title TEXT NOT NULL,
+		content TEXT NOT NULL,
+		created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+		FOREIGN KEY(user_id) REFERENCES users(id)
+	);
+	`
+
 	_, err := db.Exec(query)
 	if err != nil {
 		log.Fatal("Erreur lors de la création des tables: ", err)
+	}
+
+	_, err = db.Exec(postsTable)
+	if err != nil {
+		log.Fatal("Erreur de la création de la tables posts", err)
 	}
 }
