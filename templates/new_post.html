@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Créer un post</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <header class="nav">
+        <nav>
+            <a href="/">Accueil</a>
+            <a href="#">Équipe</a>
+            <a href="/new-post">Créer un post</a>
+            <a href="#">FAQ</a>
+            <button class="contact-btn"><a href="/login" rel="noopener noreferrer">Se connecter</a></button>
+        </nav>
+    </header>
+
+    <main>
+        <h2>Créer un Nouveau Post</h2>
+        <form action="/create-post" method="POST">
+            <label for="title">Titre:</label>
+            <input type="text" id="title" name="title" required><br>
+
+            <label for="content">Contenu:</label>
+            <textarea id="content" name="content" required></textarea><br>
+
+            <button type="submit">Publier</button>
+        </form>
+    </main>
+</body>
+</html>

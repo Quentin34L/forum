@@ -5,19 +5,9 @@ import (
 	"fmt"
 	"html/template"
 	"net/http"
+	"time"
 )
 
-// Handler pour la page d'accueil
-func HomeHandler(w http.ResponseWriter, r *http.Request) {
-	fmt.Println("Accès à la page d'accueil..")
-	tmpl, err := template.ParseFiles("templates/accueil.html")
-	if err != nil {
-		http.Error(w, "Erreur interne :", http.StatusInternalServerError)
-		fmt.Println("Erreur lors du chargement de la template :", err)
-		return
-	}
-	tmpl.Execute(w, nil)
-}
 
 // Handler pour l'inscription
 func RegisterHandler(w http.ResponseWriter, r *http.Request, db *sql.DB) {
@@ -64,11 +54,35 @@ func LoginHandler(w http.ResponseWriter, r *http.Request, db *sql.DB) {
 	fmt.Fprintf(w, "Connexion réussie !")
 }
 
-func LoginFromHandler(w http.ResponseWriter, r * http.Request) {
-	tmpl, err := template.ParseFiles("templates/login.html")
+func LoginFromHandler(w http.ResponseWriter, r *http.Request) {
+	tmpl, err := template.ParseFiles("templates/log&Singup.html")
 	if err != nil {
-		http.Error(w, "Erreur Interne :", http.StatusInternalServerError)
+		http.Error(w, "handlers.go 60 :", http.StatusInternalServerError)
 		return
 	}
 	tmpl.Execute(w, nil)
+}
+
+// Handler des posts
+func CreatePostHandler(w http.ResponseWriter, r *http.Request, db *sql.DB) {
+	if r.Method != http.MethodPost {
+		http.Error(w, "CreatePost - handlers - 81", http.StatusMethodNotAllowed)
+		return
+	}
+
+	userID := 1
+	title := r.FormValue("title")
+	content := r.FormValue("content")
+
+	if title == " " || content == " " {
+		http.Error(w, "CreatePost - Handlers - 90", http.StatusMethodNotAllowed)
+		return
+	}
+
+	_, err := db.Exec("INSERT INTO posts (user_id, title, content, created_at) VALUES (?, ?, ?, ?)", userID, title, content, time.Now())
+	if err != nil {
+		http.Error(w, "CreatePost - Handlers - 96", http.StatusInternalServerError)
+		fmt.Println("Erreur SQL:", err)
+		return
+	}
 }

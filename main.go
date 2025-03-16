@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"log"
 	"net/http"
-	"forum/Handlers" // Importation correcte du package Handlers
+	"forum/Handlers"
 
 	_ "github.com/mattn/go-sqlite3"
 )
@@ -17,8 +17,9 @@ func main() {
 	InitDB()
 
 	// Définition des routes
-	http.HandleFunc("/", handlers.HomeHandler) // accueil
-	http.HandleFunc("/login", func(w http.ResponseWriter, r * http.Request){
+
+	// Login
+	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
 		if r.Method == http.MethodGet {
 			handlers.LoginFromHandler(w, r)
 		} else if r.Method == http.MethodPost {
@@ -28,7 +29,21 @@ func main() {
 		}
 	})
 
+	// Create Posts 
+	http.HandleFunc("/create-post", func(w http.ResponseWriter, r *http.Request) {
+		if r.Method == http.MethodPost {
+			handlers.CreatePostHandler(w, r, db)
+		} else {
+			http.Error(w, "main.go - /create-post", http.StatusMethodNotAllowed)
+		}
+	})
 
+	// Route pour afficher le formulaire de création de post (nouveau handler)
+	http.HandleFunc("/new-post", func(w http.ResponseWriter, r *http.Request) {
+		http.ServeFile(w, r, "templates/new_post.html")
+	})
+
+	// Static files
 	http.Handle("/static/", http.StripPrefix("/static/", http.FileServer(http.Dir("static"))))
 
 	// Lancement du serveur
@@ -76,8 +91,6 @@ func createTables() {
 
 	_, err = db.Exec(postsTable)
 	if err != nil {
-		log.Fatal("Erreur de la création de la tables posts", err)
+		log.Fatal("Erreur de la création de la table posts", err)
 	}
 }
-
-// TEST
