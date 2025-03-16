@@ -53,6 +53,13 @@ h1 {
 
 h2 {
     text-align: center;
+    font-size: 30px;
+    transition: transform 0.3s ease-in-out, font-size 0.3s ease-in-out
+}
+
+h2:hover {
+    transform: scale(1.1);
+    font-size: 38px;
 }
 
 #TextWelcome {
@@ -296,4 +303,15 @@ footer i {
 footer a {
     color: #3c97bf;
     text-decoration: none;
+}
+
+
+#mdp {
+    font-size: 13px;
+    transition: transform 0.3s ease-in-out, font-size 0.3s ease-in-out
+}
+
+#mdp:hover {
+    transform: scale(1.1);
+    font-size: 16px;
 }
